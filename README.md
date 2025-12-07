@@ -31,8 +31,9 @@ Follow these steps to set up the project locally:
 git clone https://github.com/Nixxias/DjangoApp.git
 cd DjangoApp
 
-2. Create and activate a virtual environment
-#Windows
+2. Create and activate a virtual environment 
+
+#Windows 
 python -m venv venv
 venv\Scripts\activate
 
