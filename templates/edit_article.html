@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                {% if form.instance.pk %}Edycja artykułu{% else %}Nowy artykuł{% endif %}
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            Proszę poprawić błędy w formularzu.
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label for="id_title" class="form-label">Tytuł</label>
+                        <input type="text" name="title" id="id_title" class="form-control" 
+                               value="{{ form.title.value|default_if_none:'' }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_content" class="form-label">Treść</label>
+                        <textarea name="content" id="id_content" class="form-control" rows="10" required>{{ form.content.value|default_if_none:'' }}</textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Zapisz</button>
+                    <a href="{% url 'article_list' %}" class="btn btn-secondary">Anuluj</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
